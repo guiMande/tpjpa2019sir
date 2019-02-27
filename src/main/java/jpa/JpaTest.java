@@ -1,32 +1,54 @@
 package jpa;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.PersistenceContext;
+import javax.persistence.*;
+import java.util.List;
 
 public class JpaTest {
+
+	private EntityManager manager;
+
+	public JpaTest(EntityManager manager) {
+		this.manager = manager;
+	}
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 
-		EntityManager manager = EntityManagerHelper.getEntityManager();
+		EntityManagerFactory factory =
+				Persistence.createEntityManagerFactory("localhost");
+		EntityManager manager = factory.createEntityManager();
+		JpaTest test = new JpaTest(manager);
+
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
-
-
-		try {
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		test.createEmployees();
 		tx.commit();
-
-
+		test.listEmployees();
 		manager.close();
-		EntityManagerHelper.closeEntityManagerFactory();
-		//		factory.close();
+		System.out.println(".. done");
+		manager.close();
+	}
+
+	private void createEmployees() {
+		int numOfEmployees = manager.createQuery("Select a From Participant a", Participant.class).getResultList().size();
+		if (numOfEmployees == 0) {
+			Departement department = new Departement("java");
+			manager.persist(department);
+
+			manager.persist(new Participant("Jakab"," Gipsz",department));
+			manager.persist(new Participant("Captain", "Nemo",department));
+
+		}
+	}
+
+	private void listEmployees() {
+		List<Participant> resultList = manager.createQuery("Select a From Participant a", Participant.class).getResultList();
+		System.out.println("num of employess:" + resultList.size());
+		for (Participant next : resultList) {
+			System.out.println("next employee: " + next);
+		}
 	}
 
 
