@@ -50,9 +50,9 @@ public class UserInfo extends HttpServlet {
             tx.begin();
             //Envoie en base
             Participant employee = new Participant();
-            employee.setFirstName(request.getParameter("firstname"));
-            employee.setLastName(request.getParameter("lastname"));
-            employee.setDatenaissance(format.parse(request.getParameter("date")));
+            employee.setPrenom(request.getParameter("firstname"));
+            employee.setNom(request.getParameter("lastname"));
+            employee.setDateNaissance(format.parse(request.getParameter("date")));
             em.persist(employee);
             tx.commit();
         } catch (Exception e) {}

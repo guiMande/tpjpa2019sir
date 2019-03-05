@@ -28,7 +28,7 @@ public class N1Select {
         EntityManager manager = factory.createEntityManager();
         N1Select test = new N1Select(manager);
 
-
+/*
         TypedQuery<Departement> q = test.manager.createQuery("select d from Departement d",Departement.class);
         long start = System.currentTimeMillis();
         List<Departement> res = q.getResultList();
@@ -42,7 +42,7 @@ public class N1Select {
 
         long end = System.currentTimeMillis();
         long duree = end - start;
-        System.err.println("temps d'exec = " +  duree);
+        System.err.println("temps d'exec = " +  duree);*/
 
         // TODO persist entity
 

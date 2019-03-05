@@ -77,7 +77,7 @@ public class Participant {
         return dateNaissance;
     }
 
-    public void setDatenaissance(Date dateNaissance) {
+    public void setDateNaissance(Date dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
 }

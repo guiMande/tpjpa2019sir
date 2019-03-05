@@ -27,7 +27,7 @@ public class Joinfetch {
         Joinfetch test = new Joinfetch(manager);
 
 
-        TypedQuery<Departement> q = test.manager.createQuery("select distinct d from Departement d join fetch d.employees e",Departement.class);
+       /* TypedQuery<Departement> q = test.manager.createQuery("select distinct d from Departement d join fetch d.employees e",Departement.class);
         long start = System.currentTimeMillis();
         List<Departement> res = q.getResultList();
 
@@ -35,11 +35,11 @@ public class Joinfetch {
             for (Participant e : d.getEmployees()){
                 e.getFirstName();
             }
-        }
+        }*/
 
         long end = System.currentTimeMillis();
-        long duree = end - start;
-        System.err.println("temps d'exec = " +  duree);
+        //long duree = end - start;
+       // System.err.println("temps d'exec = " +  duree);
 
         // TODO persist entity
 

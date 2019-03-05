@@ -34,11 +34,9 @@ public class JpaTest {
 	private void createEmployees() {
 		int numOfEmployees = manager.createQuery("Select a From Participant a", Participant.class).getResultList().size();
 		if (numOfEmployees == 0) {
-			Departement department = new Departement("java");
-			manager.persist(department);
 
-			manager.persist(new Participant("Jakab"," Gipsz",department));
-			manager.persist(new Participant("Captain", "Nemo",department));
+			manager.persist(new Participant("Jakab"," Gipsz"));
+			manager.persist(new Participant("Captain", "Nemo"));
 
 		}
 	}
