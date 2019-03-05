@@ -5,24 +5,22 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
-import java.util.Collection;
 import java.util.Date;
 
 @Entity
 public class Participant {
-    String firstName, lastName;
-    int id;
-    Date datenaissance;
-    private Departement departement;
 
-    Collection<Reponses> reponsesChoisies;
+    @Id
+    @GeneratedValue
+    int id;
+    String prenom, nom;
+    Date dateNaissance;
 
     public Participant(){}
 
-    public Participant(String name, String lastName, Departement departement) {
-        this.firstName = name;
-        this.lastName = lastName;
-        this.departement = departement;
+    public Participant(String prenom, String nom) {
+        this.prenom = prenom;
+        this.nom = nom;
     }
 
     private  int calculateAge(LocalDate birthDate, LocalDate currentDate) {
@@ -36,7 +34,7 @@ public class Participant {
     @Transient
     public int getAge() {
         LocalDate date1 = Instant.ofEpochMilli(
-                datenaissance.getTime()).atZone(
+                dateNaissance.getTime()).atZone(
                 ZoneId.systemDefault()).toLocalDate();
         LocalDate date2 = Instant.ofEpochMilli(
                 System.currentTimeMillis()).
@@ -47,21 +45,21 @@ public class Participant {
     }
 
     @Column(length=1024, updatable=false, nullable=false)
-    public String getFirstName() {
-        return firstName;
+    public String getPrenom() {
+        return prenom;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
     @Column(length=1024, updatable=false, nullable=false)
-    public String getLastName() {
-        return lastName;
+    public String getNom() {
+        return nom;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     @Id
@@ -75,36 +73,11 @@ public class Participant {
     }
 
     @Temporal(TemporalType.DATE)
-    public Date getDatenaissance() {
-        return datenaissance;
+    public Date getDateNaissance() {
+        return dateNaissance;
     }
 
-    public void setDatenaissance(Date datenaissance) {
-        this.datenaissance = datenaissance;
+    public void setDatenaissance(Date dateNaissance) {
+        this.dateNaissance = dateNaissance;
     }
-
-    @OneToMany(mappedBy="utilisateur")
-    public Collection<Reponses> getReponses() {
-        return reponsesChoisies;
-    }
-
-    public void setReponses(Collection<Reponses> reponsesChoisies) {
-        this.reponsesChoisies = reponsesChoisies;
-    }
-
-    @ManyToOne
-    public Departement getDepartment() {
-        return departement;
-    }
-
-    public void setDepartment(Departement department) {
-        this.departement = department;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee [id=" + this.id + ", firstname=" + this.firstName + ", department="
-                + departement.getName() + "]";
-    }
-
 }

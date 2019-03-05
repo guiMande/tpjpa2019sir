@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.Date;
 
 @Entity
-public class Reponses {
+public class Reponse {
     @Id
     @GeneratedValue
     long id;
@@ -14,12 +14,12 @@ public class Reponses {
     Date datereponse;
 
     @OneToMany
-    Collection<Participant> utilisateur;
+    Collection<Participant> participants;
 
-    @ManyToOne
-    ReponsePossible responsePossible;
+    @Enumerated(EnumType.STRING)
+    Choix choix;
 
-    public Reponses() {
+    public Reponse() {
     }
 
     public long getId() {
@@ -38,11 +38,7 @@ public class Reponses {
         this.datereponse = datereponse;
     }
 
-    public ReponsePossible getReponsequestion() {
-        return responsePossible;
-    }
-
-    public void setReponsequestion(ReponsePossible reponsePossible) {
-        this.responsePossible = reponsePossible;
+    public Collection<Participant> getParticipants() {
+        return participants;
     }
 }

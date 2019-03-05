@@ -1,25 +1,57 @@
 package jpa;
 
+import javax.persistence.*;
 import java.util.Collection;
+import java.util.Date;
 
-public interface Sondage {
+@Entity
+public class Sondage {
 
-    public long getId();
+    @Id
+    @GeneratedValue
+    int id;
 
-    public void setId(long id);
+    String titre;
 
-    public String getTitre();
+    @OneToMany
+    Collection<Question> questions;
 
-    public void setTitre(String titre);
+    Date date;
 
-    public String getTheme();
+    @ManyToOne
+    Participant utilisateur;
 
-    public void setTheme(String theme);
+    @Enumerated(EnumType.STRING)
+    Choix choix;
 
-    public Collection<Choix> getChoix();
+    public Sondage() {}
 
-    public void setChoix(Collection<Choix> choix);
+    public Sondage(String titre) {
+        this.titre = titre;
+    }
 
-    public Collection<ReponsePossible> getReponses();
+    public long getId() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 
+    public void setId(int id) {
+        // TODO Auto-generated method stub
+    }
+
+    public String getTitre() {
+        return this.titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public Choix getChoix() {
+        return this.choix;
+    }
+
+    public void setChoix(Choix choix) {
+        this.choix = choix;
+    }
 }
