@@ -18,7 +18,6 @@ public class MyServlet extends HttpServlet {
         PrintWriter p = new PrintWriter(resp.getOutputStream());
         p.print("Hello world SIR");
         p.flush();
-
     }
 
     @Override

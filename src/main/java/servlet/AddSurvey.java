@@ -1,6 +1,8 @@
 package servlet;
 
 import jpa.Participant;
+import jpa.Question;
+import jpa.Reunion;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,9 +19,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name="userinfo",
-        urlPatterns={"/UserInfo"})
-public class UserInfo extends HttpServlet {
+@WebServlet(name="addsurvey",
+        urlPatterns={"/AddSurvey"})
+public class AddSurvey extends HttpServlet {
 
     private EntityManagerFactory factory;
     private EntityManager em;
@@ -49,26 +51,15 @@ public class UserInfo extends HttpServlet {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             tx.begin();
             //Envoie en base
-            Participant employee = new Participant();
-            employee.setPrenom(request.getParameter("firstname"));
-            employee.setNom(request.getParameter("lastname"));
-            employee.setDateNaissance(format.parse(request.getParameter("date")));
-            em.persist(employee);
+            String titre = request.getParameter("titre");
+            String resume = request.getParameter("resume");
+            System.out.println(format);
+
+            Reunion reunion = new Reunion(titre, resume);
+            Question question = new Question(reunion);
+
+
             tx.commit();
-        } catch (Exception e) {}
-
-
-        PrintWriter out = response.getWriter();
-        out.println("<HTML>\n<BODY>\n" +
-                "<a href='/'>Retour</a><br><H1>Recapitulatif des informations</H1>\n" +
-                "<UL>\n" +
-                " <LI>Nom: "
-                + request.getParameter("lastname") + "\n" +
-                " <LI>Prenom: "
-                + request.getParameter("firstname") + "\n" +
-                " <LI>Age: "
-                + request.getParameter("date") + "\n" +
-                "</UL>\n" +
-                "</BODY></HTML>");
+        }catch (Exception e){}
     }
 }
