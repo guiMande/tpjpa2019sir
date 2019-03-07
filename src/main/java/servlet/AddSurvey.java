@@ -1,8 +1,6 @@
 package servlet;
 
-import jpa.Participant;
-import jpa.Question;
-import jpa.Reunion;
+import tp.Sondage;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -42,6 +40,14 @@ public class AddSurvey extends HttpServlet {
         super.destroy();
     }
 
+   /* public void creaReu(Reunion reunion){
+        em.persist(reunion);
+    }*/
+
+    public void creaSon(Sondage sondage){
+        em.persist(sondage);
+    }
+
     public void doPost(HttpServletRequest request,
                        HttpServletResponse response)
             throws ServletException, IOException {
@@ -53,13 +59,25 @@ public class AddSurvey extends HttpServlet {
             //Envoie en base
             String titre = request.getParameter("titre");
             String resume = request.getParameter("resume");
-            System.out.println(format);
 
-            Reunion reunion = new Reunion(titre, resume);
-            Question question = new Question(reunion);
-
+            Sondage sondage = new Sondage(titre, resume);
+            em.persist(sondage.getReunion());
+            creaSon(sondage);
 
             tx.commit();
         }catch (Exception e){}
+
+        PrintWriter out2 = response.getWriter();
+        out2.println("<HTML>\n<BODY>\n" +
+                "<a href='/'>Retour</a><br><H1>Recapitulatif des informations</H1>\n" +
+                "<UL>\n" +
+                " <LI>Titre: "
+                + request.getParameter("titre") + "\n" +
+                " <LI>resume: "
+                + request.getParameter("resume") + "\n" +
+                " <LI>date: "
+                + request.getParameter("date") + "\n" +
+                "</UL>\n" +
+                "</BODY></HTML>");
     }
 }

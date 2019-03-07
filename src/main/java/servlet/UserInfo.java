@@ -1,6 +1,6 @@
 package servlet;
 
-import jpa.Participant;
+import tp.Participant;
 
 import java.io.IOException;
 import java.io.PrintWriter;

@@ -29,7 +29,7 @@ public class Joinfetch {
 
        /* TypedQuery<Departement> q = test.manager.createQuery("select distinct d from Departement d join fetch d.employees e",Departement.class);
         long start = System.currentTimeMillis();
-        List<Departement> res = q.getResultList();
+        SurveyList<Departement> res = q.getResultList();
 
         for (Departement d : res){
             for (Participant e : d.getEmployees()){

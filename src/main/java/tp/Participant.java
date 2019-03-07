@@ -1,4 +1,4 @@
-package jpa;
+package tp;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -14,6 +14,7 @@ public class Participant {
     @GeneratedValue
     int id;
     String prenom, nom;
+
     Date dateNaissance;
 
     public Participant(){}
@@ -23,7 +24,7 @@ public class Participant {
         this.nom = nom;
     }
 
-    private  int calculateAge(LocalDate birthDate, LocalDate currentDate) {
+    private int calculateAge(LocalDate birthDate, LocalDate currentDate) {
         if ((birthDate != null) && (currentDate != null)) {
             return Period.between(birthDate, currentDate).getYears();
         } else {
@@ -62,8 +63,6 @@ public class Participant {
         this.nom = nom;
     }
 
-    @Id
-    @GeneratedValue
     public int getId() {
         return id;
     }

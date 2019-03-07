@@ -1,25 +1,28 @@
-package jpa;
+package tp;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import tp.Participant;
+
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 public class Reunion {
 
+    @Id
+    @GeneratedValue
     int id;
     String titre, resume;
     Date date;
-    ArrayList<Participant> listParticipant;
+
+    @ManyToOne
+    Participant listParticipant;
 
     public Reunion(){}
 
     public Reunion (String titre, String resume) {
         this.titre = titre;
         this.resume= resume;
-        listParticipant = new ArrayList<Participant>();
+        listParticipant = new Participant();
     }
 
     public String getTitre() {
@@ -38,7 +41,6 @@ public class Reunion {
         this.resume = resume;
     }
 
-    @Id
     public int getId() {
         return id;
     }

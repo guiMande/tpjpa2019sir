@@ -1,5 +1,7 @@
 package jpa;
 
+import tp.Participant;
+
 import javax.persistence.*;
 import java.util.List;
 

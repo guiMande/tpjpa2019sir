@@ -1,5 +1,7 @@
 package fr.istic.sir.rest;
 
+import tp.Sondage;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -25,14 +27,13 @@ public class SampleWebService {
 
     }
 
-    /*@GET
+    @GET
     @Path("/home")
     @Produces(MediaType.APPLICATION_JSON)
-    public SondageTypeDate getSondage(){
-        SondageTypeDate h = new SondageTypeDate();
-        h.setId(1);
-        h.setTitre("Choix");
-        h.setTheme("couleur");
+    public Sondage getSondage(){
+        Sondage h = new Sondage("Sondage 1", "Resume 1");
+        h.setId(4);
+
         return h;
-    }*/
+    }
 }
