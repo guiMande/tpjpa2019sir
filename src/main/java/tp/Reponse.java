@@ -12,7 +12,7 @@ public class Reponse {
 
     String nom, prenom;
 
-    @ManyToOne
+    @OneToOne
     Choix choix;
 
     public Reponse() {

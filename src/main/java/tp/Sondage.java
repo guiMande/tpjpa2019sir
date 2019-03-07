@@ -10,36 +10,25 @@ import java.util.Collection;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Sondage {
 
-    @Id
-    @GeneratedValue
     int id;
-
     String titre;
-
-    @OneToOne
     Reunion reunion;
-
-    @ManyToMany
-    @JoinTable(name = "sondage_choix")
-    Collection<Choix> choix;
+    Choix choix;
 
     public Sondage() {}
 
     public Sondage(String titre, String resume) {
         this.titre = titre;
-        reunion = new Reunion(titre, resume);
-        Choix choix1 = new Choix("OUI");
-        Choix choix2 = new Choix("NON");
-        choix.add(choix1);
-        choix.add(choix2);
     }
 
+    @Id
+    @GeneratedValue
     public int getId() {
         return this.id;
     }
 
     public void setId(int id) {
-        // TODO Auto-generated method stub
+        this.id = id;
     }
 
     public String getTitre() {
@@ -50,11 +39,12 @@ public class Sondage {
         this.titre = titre;
     }
 
-    public Collection<Choix> getChoix() {
+    @OneToOne
+    public Choix getChoix() {
         return this.choix;
     }
 
-    public void setChoix(Collection<Choix> choix) {
+    public void setChoix(Choix choix) {
         this.choix = choix;
     }
 
@@ -62,6 +52,7 @@ public class Sondage {
         this.reunion = reunion;
     }
 
+    @ManyToOne
     public Reunion getReunion() {
         return reunion;
     }

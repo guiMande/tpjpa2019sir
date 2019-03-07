@@ -14,8 +14,10 @@ public class Choix {
 //	boolean multiple;
 
     // les reponses des utilisateurs
-    @OneToMany(mappedBy="choix")
-    Collection<Reponse> reponse;
+    @OneToOne(mappedBy="choix")
+    Reponse reponse;
+
+    public Choix(){}
 
     public Choix (String resume){
         this.enonce = resume;
@@ -35,10 +37,10 @@ public class Choix {
     }
 
     public void addReponse(Reponse reponse) {
-        this.reponse.add(reponse);
+        this.reponse = reponse;
     }
 
-    public Collection<Reponse> getReponses() {
+    public Reponse getReponses() {
         return this.reponse;
     }
 }

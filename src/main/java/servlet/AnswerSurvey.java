@@ -34,10 +34,9 @@ public class AnswerSurvey extends HttpServlet {
                 "Prénom :     <INPUT type=text size=20 name=firstName><BR>\r\n"
                 + sondageChoisi.getTitre());
 
-        Collection<Choix> choixSondage = sondageChoisi.getChoix();
-        for (Choix choix : choixSondage) {
+        /*for (Choix choix : choixSondage) {
             out.println(" <input type=\"checkbox\" name=\"choix\" value=\"" + choix.getId() + "\" />" + choix.getEnonce() + "<br />");
-        }
+        }*/
         out.println(
                 "<br><INPUT type=submit value=Répondre></FORM>\r\n");
     }

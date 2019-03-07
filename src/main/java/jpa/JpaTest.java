@@ -1,6 +1,9 @@
 package jpa;
 
+import tp.Choix;
 import tp.Participant;
+import tp.Reunion;
+import tp.Sondage;
 
 import javax.persistence.*;
 import java.util.List;
@@ -35,11 +38,13 @@ public class JpaTest {
 
 	private void createEmployees() {
 		int numOfEmployees = manager.createQuery("Select a From Participant a", Participant.class).getResultList().size();
+		manager.persist(new Choix("lavie"));
+		manager.persist(new Sondage("titre1","resume1"));
+
 		if (numOfEmployees == 0) {
 
 			manager.persist(new Participant("Jakab"," Gipsz"));
 			manager.persist(new Participant("Captain", "Nemo"));
-
 		}
 	}
 

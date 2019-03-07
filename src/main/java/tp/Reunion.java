@@ -3,26 +3,21 @@ package tp;
 import tp.Participant;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.Collection;
 
 @Entity
 public class Reunion {
 
-    @Id
-    @GeneratedValue
     int id;
     String titre, resume;
-    Date date;
 
-    @ManyToOne
-    Participant listParticipant;
+    Collection<Sondage> sondages;
 
     public Reunion(){}
 
-    public Reunion (String titre, String resume) {
-        this.titre = titre;
-        this.resume= resume;
-        listParticipant = new Participant();
+    public Reunion(String titre, String resume){
+        this.titre =titre;
+        this.resume = resume;
     }
 
     public String getTitre() {
@@ -41,11 +36,22 @@ public class Reunion {
         this.resume = resume;
     }
 
+    @Id
+    @GeneratedValue
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @OneToMany(mappedBy = "reunion")
+    public Collection<Sondage> getSondages() {
+        return sondages;
+    }
+
+    public void setSondages(Collection<Sondage> sondages) {
+        this.sondages = sondages;
     }
 }

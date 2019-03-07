@@ -1,10 +1,15 @@
 package servlet;
 
+import fr.istic.sir.rest.Constantes;
+import tp.Choix;
+import tp.Reunion;
 import tp.Sondage;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
+import java.util.HashSet;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -40,14 +45,6 @@ public class AddSurvey extends HttpServlet {
         super.destroy();
     }
 
-   /* public void creaReu(Reunion reunion){
-        em.persist(reunion);
-    }*/
-
-    public void creaSon(Sondage sondage){
-        em.persist(sondage);
-    }
-
     public void doPost(HttpServletRequest request,
                        HttpServletResponse response)
             throws ServletException, IOException {
@@ -57,13 +54,17 @@ public class AddSurvey extends HttpServlet {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             tx.begin();
             //Envoie en base
-            String titre = request.getParameter("titre");
-            String resume = request.getParameter("resume");
+            Choix choix = new Choix(request.getParameter(Constantes.date));
 
-            Sondage sondage = new Sondage(titre, resume);
-            em.persist(sondage.getReunion());
-            creaSon(sondage);
+            Reunion reunion = new Reunion(request.getParameter("titre"), request.getParameter("resume"));
 
+            Sondage sondage = new Sondage();
+            sondage.setTitre(request.getParameter("titre"));
+            sondage.setChoix(choix);
+            sondage.setReunion(reunion);
+            em.persist(reunion);
+            em.persist(choix);
+            em.persist(sondage);
             tx.commit();
         }catch (Exception e){}
 
