@@ -51,15 +51,13 @@ public class UserInfo extends HttpServlet {
         try {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             tx.begin();
-            //Envoie en base
-            Participant employee = new Participant();
-            employee.setPrenom(request.getParameter("firstname"));
-            employee.setNom(request.getParameter("lastname"));
-            employee.setDateNaissance(format.parse(request.getParameter("date")));
-            em.persist(employee);
+            Participant participant = new Participant();
+            participant.setPrenom(request.getParameter("firstname"));
+            participant.setNom(request.getParameter("lastname"));
+            participant.setDateNaissance(format.parse(request.getParameter("date")));
+            em.persist(participant);
             tx.commit();
         } catch (Exception e) {}
-
 
         PrintWriter out = response.getWriter();
         out.println("<HTML>\n<BODY>\n" +

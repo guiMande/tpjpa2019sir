@@ -6,6 +6,9 @@ import javax.persistence.EntityManager;
 import javax.ws.rs.*;
 import java.util.List;
 
+/**
+ * @author guillaume
+ */
 @Path("participant")
 public class ParticipantService extends AbstractService<Participant>{
 

@@ -8,6 +8,9 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+/**
+ * @author guillaume
+ */
 public abstract class AbstractService<T> {
     private Class<T> entityClass;
 
@@ -17,11 +20,6 @@ public abstract class AbstractService<T> {
 
     protected abstract EntityManager getEntityManager();
 
-    /**
-     * Cree une entite
-     * @param entity l'entite qui doit etre cree
-     * @return
-     */
     public Response create(T entity) {
         if (!getEntityManager().getTransaction().isActive()) {
             getEntityManager().getTransaction().begin();
@@ -46,11 +44,6 @@ public abstract class AbstractService<T> {
         }
     }
 
-    /**
-     * Edite une entite
-     * @param entity l'entite a editer
-     * @return
-     */
     public Response edit(T entity) {
         if (!getEntityManager().getTransaction().isActive()) {
             getEntityManager().getTransaction().begin();
@@ -68,33 +61,6 @@ public abstract class AbstractService<T> {
         }
     }
 
-    /**
-     * Supprime une entite
-     * @param entity l'entite a supprimer
-     * @return
-     */
-    public Response remove(T entity) {
-        if (!getEntityManager().getTransaction().isActive()) {
-            getEntityManager().getTransaction().begin();
-        }
-        try {
-            if (!getEntityManager().getTransaction().isActive()) {
-                getEntityManager().getTransaction().begin();
-            }
-            getEntityManager().remove(getEntityManager().merge(entity));
-            EntitySingleton.commit();
-            return Response.ok().entity("Entity deleted successfully").build();
-        } catch (Exception ex) {
-            EntitySingleton.rollback();
-            throw new WebApplicationException(ex, Response.Status.NOT_FOUND);
-        }
-    }
-
-    /**
-     * Renvoie l'entite demandee
-     * @param id l'identifiant de l'entite
-     * @return
-     */
     public T find(Object id) {
         if (!getEntityManager().getTransaction().isActive()) {
             getEntityManager().getTransaction().begin();
@@ -104,10 +70,6 @@ public abstract class AbstractService<T> {
         return obj;
     }
 
-    /**
-     * Renvoie toutes les entites d'un type
-     * @return
-     */
     public List<T> findAll() {
         if (!getEntityManager().getTransaction().isActive()) {
             getEntityManager().getTransaction().begin();
@@ -119,10 +81,6 @@ public abstract class AbstractService<T> {
         return list;
     }
 
-    /**
-     * Renvoie le nombre d'entites d'un certain type
-     * @return
-     */
     public int count() {
         if (!getEntityManager().getTransaction().isActive()) {
             getEntityManager().getTransaction().begin();
@@ -133,5 +91,4 @@ public abstract class AbstractService<T> {
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
     }
-
 }

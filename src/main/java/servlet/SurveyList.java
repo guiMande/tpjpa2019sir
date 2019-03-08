@@ -61,7 +61,6 @@ public class SurveyList extends HttpServlet {
                         + "<LI>Commentaire: " + sondage.getCommentaire().getText() + "\n"
                         + "</UL>\n");
             }
-
             out.println("</BODY></HTML>");
         } catch (Exception e) {
             e.printStackTrace();

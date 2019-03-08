@@ -9,6 +9,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import java.util.List;
 
+/**
+ * @author guillaume
+ */
 @Path("/sondage")
 public class SondageService extends AbstractService<Sondage>{
 

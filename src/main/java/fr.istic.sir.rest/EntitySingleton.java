@@ -11,12 +11,10 @@ public class EntitySingleton {
     private static final EntityManagerFactory emf;
     private static final ThreadLocal<EntityManager> threadLocal;
     private static final Logger logger;
-    // private static final CriteriaBuilder cb;
 
     static {
         emf = Persistence.createEntityManagerFactory(Constantes.connexion);
         threadLocal = new ThreadLocal<EntityManager>();
-        // cb = threadLocal.get().getCriteriaBuilder();
         logger = Logger.getLogger("example");
         logger.setLevel(Level.ALL);
     }
@@ -35,10 +33,6 @@ public class EntitySingleton {
         threadLocal.set(null);
         if (em != null)
             em.close();
-    }
-
-    public static void beginTransaction() {
-        getManager().getTransaction().begin();
     }
 
     public static void commit() {
