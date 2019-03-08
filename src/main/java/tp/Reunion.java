@@ -1,11 +1,13 @@
 package tp;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
-import tp.Participant;
 
 import javax.persistence.*;
 import java.util.Collection;
 
+/**
+ * @author guillaume
+ */
 @Entity
 public class Reunion {
 

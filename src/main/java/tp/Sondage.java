@@ -6,8 +6,10 @@ import tp.Choix;
 import tp.Reunion;
 
 import javax.persistence.*;
-import java.util.Collection;
 
+/**
+ * @author guillaume
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Sondage {

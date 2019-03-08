@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * @author guillaume
+ */
 @WebServlet(name="answerSurvey",
         urlPatterns={"/AnswerSurvey"})
 public class AnswerSurvey extends HttpServlet {

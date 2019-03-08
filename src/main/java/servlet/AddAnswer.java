@@ -18,9 +18,7 @@ import tp.Choix;
 import tp.Reponse;
 
 /**
- * Enregistre la reponse ou les reponses d'un utilisateur a un sondage
- * @author mathi
- *
+ * @author guillaume
  */
 @WebServlet(name="addAnswer",
         urlPatterns={"/AddAnswer"})

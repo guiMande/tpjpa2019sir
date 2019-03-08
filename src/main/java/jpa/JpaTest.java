@@ -2,7 +2,6 @@ package jpa;
 
 import tp.Choix;
 import tp.Participant;
-import tp.Reunion;
 import tp.Sondage;
 
 import javax.persistence.*;

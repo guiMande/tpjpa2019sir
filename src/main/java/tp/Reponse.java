@@ -1,10 +1,12 @@
 package tp;
 
 import org.codehaus.jackson.annotate.JsonManagedReference;
-import tp.Choix;
 
 import javax.persistence.*;
 
+/**
+ * @author guillaume
+ */
 @Entity
 public class Reponse {
     @Id

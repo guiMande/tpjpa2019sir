@@ -4,6 +4,9 @@ import org.codehaus.jackson.annotate.JsonBackReference;
 
 import javax.persistence.*;
 
+/**
+ * @author guillaume
+ */
 @Entity
 public class Choix {
     @Id

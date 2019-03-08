@@ -7,6 +7,9 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
 
+/**
+ * @author guillaume
+ */
 @Entity
 public class Participant {
 
@@ -42,7 +45,6 @@ public class Participant {
                 atZone(ZoneId.systemDefault()).toLocalDate();
         return calculateAge( date1,date2
         );
-
     }
 
     @Column(length=1024, updatable=false, nullable=false)

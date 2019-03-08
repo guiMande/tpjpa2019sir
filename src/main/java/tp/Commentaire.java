@@ -2,6 +2,9 @@ package tp;
 
 import javax.persistence.*;
 
+/**
+ * @author guillaume
+ */
 @Entity
 public class Commentaire {
 

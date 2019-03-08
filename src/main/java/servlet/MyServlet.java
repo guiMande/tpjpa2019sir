@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * @author guillaume
+ */
 @WebServlet(name="mytest",
 urlPatterns={"/myurl"})
 public class MyServlet extends HttpServlet {

@@ -9,8 +9,6 @@ import tp.Sondage;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.HashSet;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -23,6 +21,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author guillaume
+ */
 @WebServlet(name="addsurvey",
         urlPatterns={"/AddSurvey"})
 public class AddSurvey extends HttpServlet {
