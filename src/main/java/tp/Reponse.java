@@ -1,5 +1,6 @@
 package tp;
 
+import org.codehaus.jackson.annotate.JsonManagedReference;
 import tp.Choix;
 
 import javax.persistence.*;
@@ -12,13 +13,19 @@ public class Reponse {
 
     String nom, prenom;
 
+    @Column(length = 2048)
+    String valide;
+
     @OneToOne
+    @JsonManagedReference
     Choix choix;
 
     public Reponse() {
     }
 
     public Reponse(String nom, String prenom) {
+        this.nom = nom;
+        this.prenom = prenom;
     }
     public long getId() {
         return id;
@@ -34,5 +41,13 @@ public class Reponse {
 
     public Choix getChoix() {
         return choix;
+    }
+
+    public void setValide(String valide) {
+        this.valide = valide;
+    }
+
+    public String getValide() {
+        return valide;
     }
 }

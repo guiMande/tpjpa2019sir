@@ -18,13 +18,6 @@ public class SondageService extends AbstractService<Sondage>{
         super(Sondage.class);
     }
 
-/*
-	@DELETE
-	@Path("remove/{id}")
-	public Response remove(@PathParam("id") Integer id) {
-		return super.remove(super.find(id));
-	}
-	*/
 	@GET
 	@Path("{id}")
 	@Produces({ "application/json" })
@@ -60,6 +53,4 @@ public class SondageService extends AbstractService<Sondage>{
         em = EntitySingleton.getManager();
         return em;
     }
-
-
 }

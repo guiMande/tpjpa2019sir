@@ -1,5 +1,7 @@
 package tp;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 import tp.Choix;
 import tp.Reunion;
 
@@ -12,8 +14,10 @@ public class Sondage {
 
     int id;
     String titre;
+    @JsonManagedReference
     Reunion reunion;
     Choix choix;
+    Commentaire commentaire;
 
     public Sondage() {}
 
@@ -55,5 +59,14 @@ public class Sondage {
     @ManyToOne
     public Reunion getReunion() {
         return reunion;
+    }
+
+    @OneToOne
+    public Commentaire getCommentaire() {
+        return this.commentaire;
+    }
+
+    public void setCommentaire(Commentaire commentaire) {
+        this.commentaire = commentaire;
     }
 }

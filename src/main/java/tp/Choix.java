@@ -1,7 +1,8 @@
 package tp;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 public class Choix {
@@ -11,10 +12,9 @@ public class Choix {
 
     @Column(length=2048)
     String enonce;
-//	boolean multiple;
 
-    // les reponses des utilisateurs
     @OneToOne(mappedBy="choix")
+    @JsonBackReference
     Reponse reponse;
 
     public Choix(){}
@@ -40,7 +40,7 @@ public class Choix {
         this.reponse = reponse;
     }
 
-    public Reponse getReponses() {
+    public Reponse getReponse() {
         return this.reponse;
     }
 }

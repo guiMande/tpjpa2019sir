@@ -4,7 +4,6 @@ import tp.Participant;
 
 import javax.persistence.EntityManager;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("participant")
@@ -14,12 +13,6 @@ public class ParticipantService extends AbstractService<Participant>{
 
     public ParticipantService() {
         super(Participant.class);
-    }
-
-    @DELETE
-    @Path("remove/{id}")
-    public Response remove(@PathParam("id") Integer id) {
-        return super.remove(super.find(id));
     }
 
     @GET

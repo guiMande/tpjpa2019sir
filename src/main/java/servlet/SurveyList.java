@@ -55,6 +55,7 @@ public class SurveyList extends HttpServlet {
                 out.println("<UL>\n" +
                         " <LI>Titre: "  + "<a href=\"/AnswerSurvey?id=" + sondage.getId() + "\">" + sondage.getTitre()  + "</a>\n"
                         + " <LI>Resume: " + sondage.getReunion().getResume()+ "\n"
+                        + "<LI>Commentaire: " + sondage.getCommentaire().getText() + "\n"
                         + "</UL>\n");
             }
 

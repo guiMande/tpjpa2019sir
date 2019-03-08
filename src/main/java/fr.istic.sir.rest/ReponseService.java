@@ -4,22 +4,15 @@ import tp.Reponse;
 
 import javax.persistence.EntityManager;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("/Response")
+@Path("/reponse")
 public class ReponseService extends AbstractService<Reponse>{
 
     private EntityManager em;
 
     public ReponseService() {
         super(Reponse.class);
-    }
-
-    @DELETE
-    @Path("remove/{id}")
-    public Response remove(@PathParam("id") Integer id) {
-        return super.remove(super.find(id));
     }
 
     @GET

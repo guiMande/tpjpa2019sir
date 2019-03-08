@@ -1,5 +1,6 @@
 package tp;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
 import tp.Participant;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ public class Reunion {
     int id;
     String titre, resume;
 
+    @JsonBackReference
     Collection<Sondage> sondages;
 
     public Reunion(){}

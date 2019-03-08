@@ -1,5 +1,6 @@
 package servlet;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -32,22 +33,26 @@ public class AddAnswer extends HttpServlet {
     public void doPost(HttpServletRequest request,
                        HttpServletResponse response)
             throws ServletException, IOException {
-        String userFirstName = request.getParameter(Constantes.firstName);
-        String userLastName = request.getParameter(Constantes.lastName);
-        String[] reponses = request.getParameterValues(Constantes.choix);
-        for (String string : reponses) {
-            factory = Persistence.createEntityManagerFactory(Constantes.connexion);
-            em = factory.createEntityManager();
-            tx = em.getTransaction();
-            tx.begin();
-            int choixId = Integer.parseInt(string);
-            TypedQuery<Choix> query;
-            query = em.createQuery("SELECT c FROM Choix c WHERE c.id = " + choixId , Choix.class);
-            Reponse reponse = new Reponse(userFirstName, userLastName);
-            Choix choix = query.getSingleResult();
-            reponse.setChoix(choix);
-            em.persist(reponse);
-            tx.commit();
-        }
+        String reponses = request.getParameter("choice");
+
+        factory = Persistence.createEntityManagerFactory(Constantes.connexion);
+        em = factory.createEntityManager();
+        tx = em.getTransaction();
+        tx.begin();
+
+        int choixId = Integer.parseInt(reponses);
+
+        TypedQuery<Choix> query;
+        query = em.createQuery("SELECT c FROM Choix c WHERE c.id = " + choixId , Choix.class);
+        Reponse reponse = new Reponse(request.getParameter("lastName"), request.getParameter("firstName"));
+        Choix choix = query.getSingleResult();
+        reponse.setValide(request.getParameter("reponse"));
+        reponse.setChoix(choix);
+        em.persist(reponse);
+        tx.commit();
+
+        PrintWriter out = response.getWriter();
+        out.println("<HTML>\n<BODY>\n" +
+                "<a href='/'>Retour</a>");
     }
 }

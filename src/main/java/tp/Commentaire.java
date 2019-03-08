@@ -1,16 +1,11 @@
-package jpa;
+package tp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Commentaire {
 
-    @Id
-    @GeneratedValue
     int id;
-
     String text;
 
     public Commentaire(){ }
@@ -28,6 +23,7 @@ public class Commentaire {
     }
 
     @Id
+    @GeneratedValue
     public int getId() {
         return id;
     }

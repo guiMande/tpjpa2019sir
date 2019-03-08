@@ -2,6 +2,7 @@ package servlet;
 
 import fr.istic.sir.rest.Constantes;
 import tp.Choix;
+import tp.Commentaire;
 import tp.Reunion;
 import tp.Sondage;
 
@@ -56,12 +57,16 @@ public class AddSurvey extends HttpServlet {
             //Envoie en base
             Choix choix = new Choix(request.getParameter(Constantes.date));
 
+            Commentaire commentaire = new Commentaire(request.getParameter("commentaire"));
+
             Reunion reunion = new Reunion(request.getParameter("titre"), request.getParameter("resume"));
 
             Sondage sondage = new Sondage();
             sondage.setTitre(request.getParameter("titre"));
             sondage.setChoix(choix);
             sondage.setReunion(reunion);
+            sondage.setCommentaire(commentaire);
+            em.persist(commentaire);
             em.persist(reunion);
             em.persist(choix);
             em.persist(sondage);
@@ -78,6 +83,8 @@ public class AddSurvey extends HttpServlet {
                 + request.getParameter("resume") + "\n" +
                 " <LI>date: "
                 + request.getParameter("date") + "\n" +
+                " <LI>Commentaire: "
+                + request.getParameter("commentaire") + "\n" +
                 "</UL>\n" +
                 "</BODY></HTML>");
     }
