@@ -25,8 +25,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author guillaume
  */
 @WebServlet(name="addsurvey",
-        urlPatterns={"/AddSurvey"})
-public class AddSurvey extends HttpServlet {
+        urlPatterns={"/AjoutSondage"})
+public class AjoutSondage extends HttpServlet {
 
     private EntityManagerFactory factory;
     private EntityManager em;

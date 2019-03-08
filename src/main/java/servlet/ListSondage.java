@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author guillaume
  */
 @WebServlet(name="surveylist",
-        urlPatterns={"/SurveyList"})
-public class SurveyList extends HttpServlet {
+        urlPatterns={"/ListSondage"})
+public class ListSondage extends HttpServlet {
 
     private EntityManagerFactory factory;
     private EntityManager em;
@@ -56,7 +56,7 @@ public class SurveyList extends HttpServlet {
                     "<H1>Sondages disponibles : </H1>\n");
             for (Sondage sondage : sondages) {
                 out.println("<UL>\n" +
-                        " <LI>Titre: "  + "<a href=\"/AnswerSurvey?id=" + sondage.getId() + "\">" + sondage.getTitre()  + "</a>\n"
+                        " <LI>Titre: "  + "<a href=\"/ChoixSondage?id=" + sondage.getId() + "\">" + sondage.getTitre()  + "</a>\n"
                         + " <LI>Resume: " + sondage.getReunion().getResume()+ "\n"
                         + "<LI>Commentaire: " + sondage.getCommentaire().getText() + "\n"
                         + "</UL>\n");

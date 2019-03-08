@@ -21,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author guillaume
  */
 @WebServlet(name="userinfo",
-        urlPatterns={"/UserInfo"})
-public class UserInfo extends HttpServlet {
+        urlPatterns={"/InfoUtilisateur"})
+public class InfoUtilisateur extends HttpServlet {
 
     private EntityManagerFactory factory;
     private EntityManager em;

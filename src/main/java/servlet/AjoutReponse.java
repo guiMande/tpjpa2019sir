@@ -20,9 +20,9 @@ import tp.Reponse;
 /**
  * @author guillaume
  */
-@WebServlet(name="addAnswer",
-        urlPatterns={"/AddAnswer"})
-public class AddAnswer extends HttpServlet {
+@WebServlet(name="ajoutReponse",
+        urlPatterns={"/AjoutReponse"})
+public class AjoutReponse extends HttpServlet {
 
     private EntityManagerFactory factory;
     private EntityManager em;

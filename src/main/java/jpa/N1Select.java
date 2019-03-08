@@ -27,7 +27,7 @@ public class N1Select {
 /*
         TypedQuery<Departement> q = test.manager.createQuery("select d from Departement d",Departement.class);
         long start = System.currentTimeMillis();
-        SurveyList<Departement> res = q.getResultList();
+        ListSondage<Departement> res = q.getResultList();
 
 
         for (Departement d : res){

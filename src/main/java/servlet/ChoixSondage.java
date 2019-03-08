@@ -17,8 +17,8 @@ import java.io.PrintWriter;
  * @author guillaume
  */
 @WebServlet(name="answerSurvey",
-        urlPatterns={"/AnswerSurvey"})
-public class AnswerSurvey extends HttpServlet {
+        urlPatterns={"/ChoixSondage"})
+public class ChoixSondage extends HttpServlet {
 
     private EntityManagerFactory factory;
     private EntityManager em;
@@ -31,7 +31,7 @@ public class AnswerSurvey extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         out.println("<HTML><head><meta charset=\"utf-8\"/></head>\n<BODY>\n"
-                + "<FORM Method=\"POST\" Action=\"/AddAnswer\">\r\n" +
+                + "<FORM Method=\"POST\" Action=\"/AjoutReponse\">\r\n" +
                 "Nom :         <INPUT type=text size=20 name=lastName><BR>\r\n" +
                 "Prénom :     <INPUT type=text size=20 name=firstName><BR>\r\n"
                 + sondageChoisi.getTitre());
