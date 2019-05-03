@@ -42,8 +42,8 @@ public class JpaTest {
 
 		if (numOfEmployees == 0) {
 
-			manager.persist(new Participant("Jakab"," Gipsz"));
-			manager.persist(new Participant("Captain", "Nemo"));
+			manager.persist(new Participant("Jakabff"," Gipsffz"));
+			manager.persist(new Participant("Captaiffn", "Nfdemo"));
 		}
 	}
 
@@ -54,6 +54,4 @@ public class JpaTest {
 			System.out.println("next employee: " + next);
 		}
 	}
-
-
 }
