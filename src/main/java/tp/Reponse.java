@@ -13,22 +13,18 @@ public class Reponse {
     @GeneratedValue
     long id;
 
-    String nom, prenom;
+    @ManyToOne
+    Participant participant;
 
     @Column(length = 2048)
     String valide;
 
     @OneToOne
-    @JsonManagedReference
     Choix choix;
 
     public Reponse() {
     }
 
-    public Reponse(String nom, String prenom) {
-        this.nom = nom;
-        this.prenom = prenom;
-    }
     public long getId() {
         return id;
     }

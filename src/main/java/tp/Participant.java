@@ -1,11 +1,10 @@
 package tp;
 
 import javax.persistence.*;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.ZoneId;
+import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author guillaume
@@ -20,31 +19,14 @@ public class Participant {
 
     Date dateNaissance;
 
+    @OneToMany(mappedBy = "participant")
+    Collection<Reponse> reponses;
+
     public Participant(){}
 
     public Participant(String prenom, String nom) {
         this.prenom = prenom;
         this.nom = nom;
-    }
-
-    private int calculateAge(LocalDate birthDate, LocalDate currentDate) {
-        if ((birthDate != null) && (currentDate != null)) {
-            return Period.between(birthDate, currentDate).getYears();
-        } else {
-            return 0;
-        }
-    }
-
-    @Transient
-    public int getAge() {
-        LocalDate date1 = Instant.ofEpochMilli(
-                dateNaissance.getTime()).atZone(
-                ZoneId.systemDefault()).toLocalDate();
-        LocalDate date2 = Instant.ofEpochMilli(
-                System.currentTimeMillis()).
-                atZone(ZoneId.systemDefault()).toLocalDate();
-        return calculateAge( date1,date2
-        );
     }
 
     @Column(length=1024, updatable=false, nullable=false)
@@ -80,5 +62,13 @@ public class Participant {
 
     public void setDateNaissance(Date dateNaissance) {
         this.dateNaissance = dateNaissance;
+    }
+
+    public Collection<Reponse> getReponses() {
+        return reponses;
+    }
+
+    public void setReponses(Collection<Reponse> reponses) {
+        this.reponses = reponses;
     }
 }

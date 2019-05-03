@@ -16,7 +16,6 @@ public class Sondage {
 
     int id;
     String titre;
-    @JsonManagedReference
     Reunion reunion;
     Choix choix;
     Commentaire commentaire;

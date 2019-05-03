@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @author guillaume
  */
-@Path("participant")
+@Path("/participant")
 public class ParticipantService extends AbstractService<Participant>{
 
     private EntityManager em;

@@ -42,7 +42,7 @@ public class AjoutReponse extends HttpServlet {
 
         TypedQuery<Choix> query;
         query = em.createQuery("SELECT c FROM Choix c WHERE c.id = " + choixId , Choix.class);
-        Reponse reponse = new Reponse(request.getParameter("lastName"), request.getParameter("firstName"));
+        Reponse reponse = new Reponse();
         Choix choix = query.getSingleResult();
         reponse.setValide(request.getParameter("reponse"));
         reponse.setChoix(choix);

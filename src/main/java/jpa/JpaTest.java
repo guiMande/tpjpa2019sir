@@ -27,7 +27,6 @@ public class JpaTest {
 
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
-		test.createEmployees();
 		tx.commit();
 		test.listEmployees();
 		manager.close();
@@ -35,17 +34,6 @@ public class JpaTest {
 		manager.close();
 	}
 
-	private void createEmployees() {
-		int numOfEmployees = manager.createQuery("Select a From Participant a", Participant.class).getResultList().size();
-		manager.persist(new Choix("lavie"));
-		manager.persist(new Sondage("titre1","resume1"));
-
-		if (numOfEmployees == 0) {
-
-			manager.persist(new Participant("Jakabff"," Gipsffz"));
-			manager.persist(new Participant("Captaiffn", "Nfdemo"));
-		}
-	}
 
 	private void listEmployees() {
 		List<Participant> resultList = manager.createQuery("Select a From Participant a", Participant.class).getResultList();

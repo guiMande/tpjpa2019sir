@@ -32,7 +32,7 @@ public class SondageService extends AbstractService<Sondage>{
     @GET
     @Produces({ "application/json" })
     public List<Sondage> findAll() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory(Constantes.connexion);
+        /*EntityManagerFactory factory = Persistence.createEntityManagerFactory(Constantes.connexion);
         em = factory.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx = em.getTransaction();
@@ -42,7 +42,8 @@ public class SondageService extends AbstractService<Sondage>{
         List<Sondage> result = sondage.getResultList();
 
         tx.commit();
-        return result;
+        return result;*/
+        return super.findAll();
     }
 
     @GET
