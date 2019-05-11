@@ -3,19 +3,39 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListParticipantComponent } from './Participant/list-participant/list-participant.component';
-import {HttpClientModule} from "@angular/common/http";
-import {ApiService} from "./api.service";
+import { HttpClientModule } from "@angular/common/http";
+import { ApiService } from "./api.service";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from "./material.module";
+import { ParticipantsComponent } from './participants/participants.component';
+import { AppRouters } from "./app.routes";
+import { SondageComponent } from './sondage/sondage.component';
+import { SondagesComponent } from './sondages/sondages.component';
+import { ParticipantCreateComponent } from './participants/participant-create/participant-create.component';
+import { MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListParticipantComponent
+    ParticipantsComponent,
+    SondageComponent,
+    SondagesComponent,
+    ParticipantCreateComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    AppRouters,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    FormsModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

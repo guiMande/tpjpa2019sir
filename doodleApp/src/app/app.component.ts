@@ -8,16 +8,10 @@ import {Participant} from "./Models/participant";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  title = 'doodleApp';
-  participant: Participant;
+  title = 'doodleApp'
 
   constructor(private api: ApiService) {}
 
   ngOnInit(){
-    this.api.getParticipant().subscribe(res => {
-      this.participant = res;
-      console.log(res);
-    })
-
   }
 }
