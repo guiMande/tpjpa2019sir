@@ -1,12 +1,11 @@
 package fr.istic.sir.rest;
 
+import tp.Participant;
 import tp.Sondage;
 
 import javax.persistence.*;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
@@ -32,18 +31,30 @@ public class SondageService extends AbstractService<Sondage>{
     @GET
     @Produces({ "application/json" })
     public List<Sondage> findAll() {
-        /*EntityManagerFactory factory = Persistence.createEntityManagerFactory(Constantes.connexion);
+        return super.findAll();
+    }
+
+    @POST
+    @Produces({"application/json"})
+    @Consumes({"application/json"})
+    public Response postParticipant(Sondage sondage){
+        return super.create(sondage);
+    }
+
+    @DELETE @Path("delete/{id}")
+    @Produces({"application/json"})
+    public List<Sondage> delete(@PathParam("id") int Id) {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(Constantes.connexion);
         em = factory.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx = em.getTransaction();
         tx.begin();
-        TypedQuery<Sondage> sondage = em.createQuery("SELECT c FROM Sondage c", Sondage.class);
+        TypedQuery<Sondage> sondage = em.createQuery("DELETE FROM Sondage s WHERE s.id = " + Id, Sondage.class);
 
         List<Sondage> result = sondage.getResultList();
 
         tx.commit();
-        return result;*/
-        return super.findAll();
+        return result;
     }
 
     @GET

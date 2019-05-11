@@ -1,9 +1,11 @@
 package fr.istic.sir.rest;
 
 import tp.Reponse;
+import tp.Sondage;
 
-import javax.persistence.EntityManager;
+import javax.persistence.*;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
@@ -29,6 +31,29 @@ public class ReponseService extends AbstractService<Reponse>{
     @Produces({ "application/json" })
     public List<Reponse> findAll() {
         return super.findAll();
+    }
+
+    @POST
+    @Produces({"application/json"})
+    @Consumes({"application/json"})
+    public Response postParticipant(Reponse reponse){
+        return super.create(reponse);
+    }
+
+    @DELETE @Path("delete/{id}")
+    @Produces({"application/json"})
+    public List<Reponse> delete(@PathParam("id") int Id) {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(Constantes.connexion);
+        em = factory.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx = em.getTransaction();
+        tx.begin();
+        TypedQuery<Reponse> reponse = em.createQuery("DELETE FROM Reponse s WHERE s.id = " + Id, Reponse.class);
+
+        List<Reponse> result = reponse.getResultList();
+
+        tx.commit();
+        return result;
     }
 
     @GET
